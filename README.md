@@ -21,7 +21,7 @@ The building procedure is simple:
 1. Clone this repository
    git clone https://github.com/w41l/wlskde.git
 
-2. Change into gnome and run:
+2. Change directory into wlskde and run:
    ./kde.SlackBuild
 
 3. By default the build script WILL NOT upgrade already installed
