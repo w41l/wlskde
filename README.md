@@ -19,28 +19,28 @@ BUILDING
 The building procedure is simple:
 
 1. Clone this repository
-   git clone https://github.com/w41l/wlskde.git
+    git clone https://github.com/w41l/wlskde.git
 
 2. Change directory into wlskde and run:
-   ./kde.SlackBuild
+    ./kde.SlackBuild
 
 3. By default the build script WILL NOT upgrade already installed
    packages with same name. To "ALWAYS" install or upgrade the package,
    run the build script with environment variable:
-   UPGRADE_PACKAGES="always" ./kde.SlackBuild
+    UPGRADE_PACKAGES="always" ./kde.SlackBuild
 
 4. To install/upgrade single module (ie. just the 'plasma'), run:
-   ./kde.SlackBuild plasma
-   
+    ./kde.SlackBuild plasma
+
 5. To install/upgrade two or more modules, run:
-   ./kde.SlackBuild frameworks,plasma
+    ./kde.SlackBuild frameworks,plasma
 
 6. To install/upgrade single package or several packages, run:
-   ./kde.SlackBuild plasma pkg1
-   (or)
-   cd plasma/pkg1 && ./pkg1.SlackBuild
-   (or)
-   ./kde.SlackBuild plasma pkg1:pkg2:pkg3
+    ./kde.SlackBuild plasma pkg1
+    (or)
+    cd plasma/pkg1 && ./pkg1.SlackBuild
+    (or)
+    ./kde.SlackBuild plasma pkg1:pkg2:pkg3
 
 7. Use 'xwmconfig' to use KDE session for startx or start sddm at boot.
 
