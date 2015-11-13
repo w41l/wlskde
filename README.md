@@ -4,14 +4,14 @@ WARNING
 STILL IN PROGRESS!
 
 Please use AlienBOB KDE5 repositories below for complete Slackware Current KDE5 packages:
-http://alien.slackbook.org/ktown/ (the master repository),
-rsync URI: rsync://alien.slackbook.org/alien/ktown/
-http://taper.alienbase.nl/mirrors/alien-kde/ (my fast US mirror),
-rsync URI: rsync://taper.alienbase.nl/mirrors/alien-kde/
-http://repo.ukdw.ac.id/alien-kde/ (willysr’s Indonesian mirror),
-rsync URI: rsync://repo.ukdw.ac.id/alien-kde/
-http://slackware.org.uk/people/alien-kde/ (fast UK based mirror, run by Darren Austin),
-rsync URI: rsync://slackware.org.uk/people/alien-kde/
+- http://alien.slackbook.org/ktown/ (the master repository),
+- rsync URI: rsync://alien.slackbook.org/alien/ktown/
+- http://taper.alienbase.nl/mirrors/alien-kde/ (my fast US mirror),
+- rsync URI: rsync://taper.alienbase.nl/mirrors/alien-kde/
+- http://repo.ukdw.ac.id/alien-kde/ (willysr’s Indonesian mirror),
+- rsync URI: rsync://repo.ukdw.ac.id/alien-kde/
+- http://slackware.org.uk/people/alien-kde/ (fast UK based mirror, run by Darren Austin),
+- rsync URI: rsync://slackware.org.uk/people/alien-kde/
 
 BUILDING
 ========
