@@ -56,10 +56,10 @@ _install() {
 }
 
 _postbuild() {
-  # Update libraries links
-  /sbin/ldconfig;
   # Clearing environment
   unset VERSION BUILD TAG ARCH;
+  # Update libraries links
+  /sbin/ldconfig;
   # Back to SlackBuild ROOT directory
   cd $KDEROOT;
   pwd;
