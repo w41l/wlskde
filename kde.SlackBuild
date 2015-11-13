@@ -34,7 +34,7 @@ UPGRADE_PACKAGES=${UPGRADE_PACKAGES:-"yes"}
 _build() {
   set -e
   # Clearing environment
-  unset VERSION BUILD TAG;
+  unset VERSION BUILD TAG ARCH;
   # Create package build state
   mkdir -p $WRK $OUTPUT;
   rm -f $WRK/${PRGNAM}.failed;
@@ -59,7 +59,7 @@ _postbuild() {
   # Update libraries links
   /sbin/ldconfig;
   # Clearing environment
-  unset VERSION BUILD TAG;
+  unset VERSION BUILD TAG ARCH;
   # Back to SlackBuild ROOT directory
   cd $KDEROOT;
   pwd;
@@ -110,4 +110,4 @@ else
 fi
 
 # Clearing environment
-unset WRK OUTPUT KDEROOT UPGRADE_PACKAGES MODULES PRGNAM VERSION BUILD TAG
+unset WRK OUTPUT KDEROOT UPGRADE_PACKAGES MODULES PRGNAM VERSION BUILD TAG ARCH
