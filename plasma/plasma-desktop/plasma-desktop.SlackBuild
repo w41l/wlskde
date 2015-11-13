@@ -99,8 +99,9 @@ make $NUMJOBS || exit 1
 make DESTDIR=$PKG install || exit 1
 cd ..
 
-# post install script
-. $CWD/$PRGNAM.install
+# Move the polkit dbus configuration files to the proper place:
+mkdir -p $PKG/etc
+mv $PKG/etc/kde/dbus-1 $PKG/etc/
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

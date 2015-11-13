@@ -34,7 +34,7 @@ CWD=$(pwd)
 WRK=${WRK:-/tmp/wlsbuild}
 PKG=$WRK/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
-DOCS="AUTHORS COPYING* ChangeLog"
+DOCS="COPYING*"
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in

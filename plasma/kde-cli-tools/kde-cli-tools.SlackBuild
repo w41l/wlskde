@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for kmenuedit
+# Slackware build script for kde-cli-tools
 
 # Copyright 2015  Widya Walesa <walecha99@gmail.com>
 # All rights reserved.
@@ -23,7 +23,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. FURTHERMORE I AM NOT LIABLE IF
 # YOUR DATA IS DESTROYED, YOUR HOUSE BURNS DOWN OR YOUR DOG RUNS OFF.
 
-PRGNAM=kmenuedit
+PRGNAM=kde-cli-tools
 VERSION=$(basename $PRGNAM-*.tar.* | rev | cut -d . -f 3- | cut -d - -f 1 | rev)
 BUILD=${BUILD:-1}
 TAG=${TAG:-_wls}
