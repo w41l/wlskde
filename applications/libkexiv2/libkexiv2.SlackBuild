@@ -99,7 +99,7 @@ cd build
     -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
     -DBUILD_TESTING=OFF \
     -DHAVE_SHADOW=TRUE \
-    -DQca-qt5_DIR=lib${LIBDIRSUFFIX}/cmake/Qca \
+    -DQca-qt5_DIR=/usr/lib${LIBDIRSUFFIX}/cmake/Qca \
     ..
 
 make $NUMJOBS || exit 1
