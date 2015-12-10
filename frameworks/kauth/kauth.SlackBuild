@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for kactivities
+# Slackware build script for kauth
 
 # Copyright 2015  Widya Walesa <walecha99@gmail.com>
 # All rights reserved.
@@ -23,7 +23,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. FURTHERMORE I AM NOT LIABLE IF
 # YOUR DATA IS DESTROYED, YOUR HOUSE BURNS DOWN OR YOUR DOG RUNS OFF.
 
-PRGNAM=kactivities
+PRGNAM=kauth
 VERSION=$(basename $PRGNAM-*.tar.* | rev | cut -d . -f 3- | cut -d - -f 1 | rev)
 BUILD=${BUILD:-1}
 TAG=${TAG:-_wls}
@@ -33,7 +33,7 @@ CWD=$(pwd)
 WRK=${WRK:-/tmp/wlsbuild}
 PKG=$WRK/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
-DOCS="COMPLIANCE COPYING* HACKING"
+DOCS="COPYING* README* TODO"
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -60,10 +60,10 @@ fi
 rm -rf $PKG
 mkdir -p $WRK $PKG $OUTPUT
 cd $WRK
-rm -rf kactivities-$VERSION
-tar xf $CWD/kactivities-$VERSION.tar.?z*
+rm -rf $PRGNAM-$VERSION
+tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
 
-cd kactivities-$VERSION
+cd $PRGNAM-$VERSION
 chown -R root:root .
 find . \
  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
@@ -97,7 +97,8 @@ make $NUMJOBS || exit 1
 make DESTDIR=$PKG install || exit 1
 cd ..
 
-. $CWD/$PRGNAM.install
+# Move the polkit dbus configuration files to the proper place:
+mv $PKG/etc/kde/dbus-1 $PKG/etc/
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -118,4 +119,4 @@ cd $PKG
 /sbin/makepkg -p -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
 
 echo "Cleaning up build directory"
-cd $WRK; rm -rf kactivities-$VERSION $PKG
+cd $WRK; rm -rf $PRGNAM-$VERSION $PKG

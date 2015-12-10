@@ -41,7 +41,7 @@ _build() {
   touch $WRK/${PRGNAM}.failed;
   # Build the package
   cd $KDEROOT/$MODULES/$PRGNAM;
-  . ./${PRGNAM}.SlackBuild;
+  . ./${PRGNAM}.SlackBuild || echo "Failed building: $PRGNAM";
   # Delete package build state
   rm -f $WRK/${PRGNAM}.failed;
 }

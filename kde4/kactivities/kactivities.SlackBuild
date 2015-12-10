@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Slackware build script for plasma-workspace
+# Slackware build script for kactivities
 
 # Copyright 2015  Widya Walesa <walecha99@gmail.com>
 # All rights reserved.
@@ -23,9 +23,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. FURTHERMORE I AM NOT LIABLE IF
 # YOUR DATA IS DESTROYED, YOUR HOUSE BURNS DOWN OR YOUR DOG RUNS OFF.
 
-PRGNAM=plasma-workspace
-VERSION=$(basename $PRGNAM-*.tar.* | rev | cut -d . -f 3- | cut -d - -f 1 | rev)
-BUILD=${BUILD:-2}
+PRGNAM=kactivities
+VERSION=$(basename kactivities-*.tar.* | rev | cut -d . -f 3- | cut -d - -f 1 | rev)
+BUILD=${BUILD:-1}
 TAG=${TAG:-_wls}
 NUMJOBS=${NUMJOBS:--j7}
 
@@ -33,7 +33,7 @@ CWD=$(pwd)
 WRK=${WRK:-/tmp/wlsbuild}
 PKG=$WRK/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
-DOCS="COPYING* HACKING"
+DOCS="COPYING* MAINTAINER README* TODO"
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -60,10 +60,10 @@ fi
 rm -rf $PKG
 mkdir -p $WRK $PKG $OUTPUT
 cd $WRK
-rm -rf $PRGNAM-$VERSION
-tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
+rm -rf kactivities-$VERSION
+tar xf $CWD/kactivities-$VERSION.tar.?z*
 
-cd $PRGNAM-$VERSION
+cd kactivities-$VERSION
 chown -R root:root .
 find . \
  \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
@@ -84,23 +84,18 @@ cd build
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DMAN_INSTALL_DIR=/usr/man \
     -DSYSCONF_INSTALL_DIR=/etc/kde \
-    -DLIB_INSTALL_DIR=lib$LIBDIRSUFFIX \
+    -DLIB_INSTALL_DIR=/usr/lib$LIBDIRSUFFIX \
+    -DLIBEXEC_INSTALL_DIR=/usr/lib$LIBDIRSUFFIX \
     -DLIB_SUFFIX=${LIBDIRSUFFIX} \
-    -DLIBEXEC_INSTALL_DIR=lib$LIBDIRSUFFIX \
-    -DQT_PLUGIN_INSTALL_DIR=lib$LIBDIRSUFFIX/qt5/plugins \
-    -DQML_INSTALL_DIR=lib$LIBDIRSUFFIX/qt5/qml \
-    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-    -DBUILD_TESTING=OFF \
-    -DHAVE_SHADOW=TRUE \
-    -DQca-qt5_DIR=/usr/lib${LIBDIRSUFFIX}/cmake/Qca \
-    ..
+    .. || exit 1
 
 make $NUMJOBS || exit 1
 make DESTDIR=$PKG install || exit 1
 cd ..
 
-# post install script
-#. $CWD/$PRGNAM.install
+# We use the daemon from kactivities-framework because that one is compatible
+# with the kactivities 4 libraries but not vice-versa:
+rm -f $PKG/usr/bin/kactivitymanagerd
 
 find $PKG | xargs file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
@@ -121,4 +116,4 @@ cd $PKG
 /sbin/makepkg -p -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
 
 echo "Cleaning up build directory"
-cd $WRK; rm -rf $PRGNAM-$VERSION $PKG
+cd $WRK; rm -rf kactivities-$VERSION $PKG
